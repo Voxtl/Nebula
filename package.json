@@ -1,0 +1,34 @@
+{
+  "name": "nebula",
+  "version": "1.0.0",
+  "description": "Our chat server based on WebSockets, using Redis PubSub for scaling.",
+  "main": "app.ts",
+  "scripts": {
+    "build": "tsc",
+    "start:dev": "nodemon"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6",
+    "redis": "^3.0.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5",
+    "ws": "^7.4.0"
+  },
+  "devDependencies": {
+    "@types/redis": "^2.8.28",
+    "@types/ws": "^7.2.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Voxtl/Nebula.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Voxtl/Nebula/issues"
+  },
+  "homepage": "https://github.com/Voxtl/Nebula#readme"
+}
