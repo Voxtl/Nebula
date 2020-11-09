@@ -1,18 +1,15 @@
-class User {
+export default class User {
     id: string;
 
-    constructor(id:string) {
+    constructor(id: string) {
         this.id = id;
     }
 
-    toJson() {
-        let data = {
+    toJson(): string {
+        const data = {
             id: this.id
         };
 
         return JSON.stringify(data);
     }
 }
-
-module.exports = User;
-export default User;

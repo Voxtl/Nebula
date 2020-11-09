@@ -7,7 +7,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 // Initalise .env
 config();
 
-import Redis from './helpers/Redis';
+import { Redis } from './helpers/Redis';
 import User from './classes/user';
 import { NebulaData } from './helpers/interfaces';
 
@@ -15,7 +15,7 @@ import { NebulaData } from './helpers/interfaces';
 console.log('.__   __.  _______ .______    __    __   __          ___      ');
 console.log('|  \\ |  | |   ____||   _  \\  |  |  |  | |  |        /   \\     ');
 console.log('|   \\|  | |  |__   |  |_)  | |  |  |  | |  |       /  ^  \\    ');
-console.log('|  . `  | |   __|  |   _  <  |  |  |  | |  |      /  /_\\  \   ');
+console.log('|  . `  | |   __|  |   _  <  |  |  |  | |  |      /  /_\\  \\   ');
 console.log('|  |\\   | |  |____ |  |_)  | |  `--\'  | |  `----./  _____  \\  ');
 console.log('|__| \\__| |_______||______/   \\______/  |_______/__/     \\__\\ ');
 console.log('');
@@ -37,17 +37,18 @@ wss.on('connection', (ws, req) => {
         headers: {
             'Authorization': `Bearer ${process.env.VOXTL_API_KEY}`
         }
-    }).then((res:AxiosResponse) => {
-    }).catch((error:AxiosError) => {
+    }).then((res: AxiosResponse) => {
+        // This promise is empty, is it needed?
+    }).catch((error: AxiosError) => {
         ws.send('No channel found.');
         return ws.terminate();
     });
 
     // Create new user
-    let user = new User('guest');
+    const user = new User('guest');
 
     // Message event
-    ws.on('message', async (msg:string) => {
+    ws.on('message', async (msg: string) => {
         let data:NebulaData;
 
         // Convert data to json
@@ -65,13 +66,13 @@ wss.on('connection', (ws, req) => {
                 // Get user profile
                 await axios({
                     method: 'post',
-                    url: `https://auth.voxtl.tv/token/validate`,
+                    url: 'https://auth.voxtl.tv/token/validate',
                     data: {
                         'access_token': data.data
                     }
-                }).then((res:AxiosResponse) => {
+                }).then((res: AxiosResponse) => {
                     user.id = res.data.result.user_id;
-                }).catch((error:AxiosError) => {
+                }).catch((/*error:AxiosError This isn't used*/) => {
                     ws.send('No user found.');
                     return ws.terminate();
                 });
@@ -96,6 +97,5 @@ wss.on('connection', (ws, req) => {
             ws.send('Invalid event sent.');
             return ws.terminate();
         }
-
     });
 });
