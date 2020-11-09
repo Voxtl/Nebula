@@ -1,4 +1,4 @@
 export interface NebulaData {
     event: string,
-    data: any
+    data: any // This should be changed in the future.
 }

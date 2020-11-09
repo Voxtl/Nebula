@@ -5,7 +5,8 @@
   "main": "app.ts",
   "scripts": {
     "build": "tsc",
-    "start:dev": "nodemon"
+    "start:dev": "nodemon",
+    "lint": "eslint --ext .ts ."
   },
   "dependencies": {
     "axios": "^0.21.0",
@@ -19,7 +20,10 @@
   },
   "devDependencies": {
     "@types/redis": "^2.8.28",
-    "@types/ws": "^7.2.9"
+    "@types/ws": "^7.2.9",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
+    "@typescript-eslint/parser": "^4.6.1",
+    "eslint": "^7.13.0"
   },
   "repository": {
     "type": "git",
