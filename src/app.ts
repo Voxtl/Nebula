@@ -67,9 +67,10 @@ wss.on('connection', (ws, req) => {
                 await axios({
                     method: 'post',
                     url: 'https://auth.voxtl.tv/token/validate',
-                    data: {
-                        'access_token': data.data
-                    }
+                    headers: {
+                        'content-type': 'application/x-www-form-urlencoded',
+                        'Authorization': `Bearer ${data.data}`,
+                    },
                 }).then((res: AxiosResponse) => {
                     user.id = res.data.result.user_id;
                 }).catch((/*error:AxiosError This isn't used*/) => {
